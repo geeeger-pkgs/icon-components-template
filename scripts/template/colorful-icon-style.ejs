@@ -1,0 +1,13 @@
+.colorful-icon {
+  display: inline-block;
+
+  .colorful-icon {
+    float: left;
+  }
+
+  &--clearfix::after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+}

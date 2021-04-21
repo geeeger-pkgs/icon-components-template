@@ -1,0 +1,55 @@
+<template>
+  <div
+    class="colorful-icon <%- name %>"
+    :style="computedStyle"
+    @click="onClick"
+  >
+    <%- content -%>
+  </div>
+</template>
+
+<script>
+import { addUnit } from '../utils';
+
+export default {
+  name: '<%- name %>',
+
+  props: {
+    width: {
+      type: [String, Number],
+      default: '32px'
+    },
+    height: {
+      type: [String, Number],
+      default: '32px'
+    }
+  },
+
+  computed: {
+    computedStyle() {
+      return {
+        width: addUnit(this.width),
+        height: addUnit(this.height)
+      }
+    }
+  },
+
+  methods: {
+    onClick($event) {
+      this.$emit('click', $event);
+    }
+  }
+};
+</script>
+
+<style lang="less">
+.<%- name %> {
+  display: inline-block;
+  div {
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+}
+</style>

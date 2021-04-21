@@ -1,0 +1,71 @@
+import { addUnit } from '../utils';
+import Clear from '../colorful-icon-clear';
+import Wechat from '../colorful-icon-wechat';
+
+const map = {
+  'clear': Clear,
+  'wechat': Wechat
+};
+
+export default {
+  name: 'colorful-icon',
+
+  props: {
+    name: String,
+    width: {
+      type: [String, Number],
+      default: '32px'
+    },
+    height: {
+      type: [String, Number],
+      default: '32px'
+    }
+  },
+
+  methods: {
+    onClick($event) {
+      this.$emit('click', $event);
+    }
+  },
+
+  render(h) {
+    return h(
+      'div',
+      {
+        class: {
+          'colorful-icon': true,
+          'colorful-icon--clearfix': true
+        }
+      },
+      map[this.name]
+        ? [
+            h(map[this.name], {
+              props: {
+                width: this.width,
+                height: this.height
+              },
+              on: {
+                click: this.onClick
+              }
+            })
+          ]
+        : [
+            h('div', {
+              attrs: {
+                class: 'colorful-icon'
+              },
+              style: {
+                width: addUnit(this.width),
+                height: addUnit(this.height),
+                backgroundImage: 'url(' + this.name + ')',
+                backgroundSize: '100% 100%',
+                backgroundRepeat: 'no-repeat'
+              },
+              on: {
+                click: this.onClick
+              }
+            })
+          ]
+    );
+  }
+};

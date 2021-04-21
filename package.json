@@ -1,0 +1,81 @@
+{
+    "name": "colorful-icon-components",
+    "version": "1.0.0",
+    "description": "基于vant-cli2的模板",
+    "main": "lib/index.js",
+    "module": "es/index.js",
+    "style": "lib/index.css",
+    "files": [
+        "lib",
+        "es"
+    ],
+    "scripts": {
+        "dev": "vant-cli dev",
+        "test": "vant-cli test",
+        "lint": "vant-cli lint",
+        "build": "npm run icon && vant-cli build",
+        "release": "vant-cli release",
+        "test:coverage": "open test/coverage/index.html",
+        "build-site": "vant-cli build-site && gh-pages -d site",
+        "icon": "node ./scripts/components-builder.js"
+    },
+    "author": "yyn",
+    "license": "MIT",
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged",
+            "commit-msg": "vant-cli commit-lint"
+        }
+    },
+    "lint-staged": {
+        "*.md": "prettier --write",
+        "*.{ts,tsx,js,vue,less}": "prettier --write",
+        "*.{ts,tsx,js,jsx,vue}": "eslint --fix",
+        "*.{vue,css,less,scss}": "stylelint --fix"
+    },
+    "peerDependencies": {
+        "vue": "^2.6.11",
+        "vue-template-compiler": "^2.6.11"
+    },
+    "dependencies": {
+        "@babel/runtime": "7.x",
+        "vant": "^2.12.4"
+    },
+    "devDependencies": {
+        "@vant/cli": "^2.8.2",
+        "babel-plugin-import": "^1.13.3",
+        "babel-plugin-module-resolver": "^4.1.0",
+        "ejs": "^3.1.6",
+        "file-loader": "^6.2.0",
+        "fs-extra": "^9.1.0",
+        "glob": "^7.1.6",
+        "md5-file": "^5.0.0",
+        "url-loader": "^4.1.1",
+        "vue": "^2.6.11",
+        "vue-template-compiler": "^2.6.11"
+    },
+    "eslintConfig": {
+        "root": true,
+        "extends": [
+            "@vant"
+        ],
+        "rules": {
+            "global-require": 0
+        }
+    },
+    "stylelint": {
+        "extends": [
+            "@vant/stylelint-config"
+        ]
+    },
+    "prettier": {
+        "singleQuote": true,
+        "semi": true,
+        "printWidth": 120,
+        "proseWrap": "never"
+    },
+    "browserslist": [
+        "Android >= 4.0",
+        "iOS >= 8"
+    ]
+}
